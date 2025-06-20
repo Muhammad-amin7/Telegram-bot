@@ -5,7 +5,7 @@ import { startButtons } from "./src/buttons/start.button.js";
 
 const bot = new Telegraf('7337361786:AAGX03pwNx56OtvSPApda7tZSznxTTt8sv4');
 let waterMl = 0;
-const chatId = "6528186432"; // O'zingiznikiga almashtiring
+const chatId = "6528186432";
 
 // START
 bot.hears("/start", (ctx) => {
@@ -26,6 +26,7 @@ bot.action("namozvaqti", async (ctx) => {
       const { Fajr, Dhuhr, Asr, Maghrib, Isha } = res.data.data.timings;
       const text = `🕌 Namoz vaqtlari:\n\nBomdod: ${Fajr}\nPeshin: ${Dhuhr}\nAsr: ${Asr}\nShom: ${Maghrib}\nIsha: ${Isha}`;
       await ctx.reply(text);
+      await ctx.reply("O'zingizga kerakli menuni tanlashingiz mumkin", startButtons(Markup));
 });
 
 schedule.scheduleJob('0 2 * * *', async () => {
